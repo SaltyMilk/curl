@@ -557,9 +557,15 @@ void ourWriteOut(struct OperationConfig *config, struct per_transfer *per,
                   done = TRUE;
                 break;
               case VAR_STDOUT:
+                if(fclose_stream)
+                  fclose(stream);
+                fclose_stream = FALSE;
                 stream = stdout;
                 break;
               case VAR_STDERR:
+                if(fclose_stream)
+                  fclose(stream);
+                fclose_stream = FALSE;
                 stream = stderr;
                 break;
               case VAR_JSON:
